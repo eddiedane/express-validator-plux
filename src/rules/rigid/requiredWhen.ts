@@ -1,17 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { sentenceCase } from 'change-case';
-import { Request } from 'express';
 import { get } from 'lodash';
 
-import { ValidatorHandler } from '../types';
-import { required } from '../utils';
-
-export type RequiredWhenOptions = {
-  field?: string;
-  values: any[];
-  value?: (req: Request) => Promise<any>;
-};
+import { ValidatorHandler } from '../../types';
+import { required } from '../../utils';
 
 export function requiredWhen(
   field: string,
