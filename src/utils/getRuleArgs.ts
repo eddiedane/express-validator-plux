@@ -1,6 +1,6 @@
-import { FieldRule } from "../types";
-import { getDefaultArg } from "./getDefaultArg";
-import { getRuleName } from "./getRuleName";
+import { FieldRule } from '../types';
+import { getDefaultArg } from './getDefaultArg';
+import { getRuleName } from './getRuleName';
 
 export const getRuleArgs = (rule: FieldRule, spreadable: boolean = false) => {
   const ruleName = getRuleName(rule);
@@ -18,5 +18,9 @@ export const getRuleArgs = (rule: FieldRule, spreadable: boolean = false) => {
 
   if (spreadable) args = Array.isArray(args) ? args : [args];
 
-  return Array.isArray(args) ? (args.length ? args : getDefaultArg(ruleName)) : args || [];
+  return Array.isArray(args)
+    ? args.length
+      ? args
+      : getDefaultArg(ruleName)
+    : args || [];
 };

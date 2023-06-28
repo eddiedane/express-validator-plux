@@ -1,4 +1,4 @@
-import { Obj } from "../types";
+import { Obj } from '../types';
 
 export const combineMessages = (main: Obj, overide: Obj) => {
   for (const fieldName in main) {

@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Request } from "express";
+import { Request } from 'express';
 
-import { QV_BEFORE_RESULT, QV_CONTEXTS } from "../constants";
-import { Obj } from "../types";
-import { mergeNestedKeys } from "./keychain";
+import { QV_BEFORE_RESULT, QV_CONTEXTS } from '../constants';
+import { Obj } from '../types';
+import { mergeNestedKeys } from './keychain';
 
 export function suppressErrors({
   req,

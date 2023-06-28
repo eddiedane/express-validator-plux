@@ -1,6 +1,6 @@
-import { sentenceCase } from "change-case";
+import { sentenceCase } from 'change-case';
 
-import { MessageConfig, Obj } from "../types";
+import { MessageConfig, Obj } from '../types';
 
 const getInfo = (info: Obj, ruleName: string, prop: string) => {
   const value = info && info[ruleName];
@@ -8,8 +8,8 @@ const getInfo = (info: Obj, ruleName: string, prop: string) => {
 };
 
 const isLengthMsg = (field: string, info: Obj) => {
-  const min = getInfo(info, "isLength", "min");
-  const max = getInfo(info, "isLength", "max");
+  const min = getInfo(info, 'isLength', 'min');
+  const max = getInfo(info, 'isLength', 'max');
 
   const isRange = min != null && max != null;
 
@@ -27,8 +27,8 @@ const isLengthMsg = (field: string, info: Obj) => {
 };
 
 const isIntMsg = (field: string, info: Obj) => {
-  const min = getInfo(info, "isInt", "min");
-  const max = getInfo(info, "isInt", "max");
+  const min = getInfo(info, 'isInt', 'min');
+  const max = getInfo(info, 'isInt', 'max');
 
   const isRange = min != null && max != null;
 
@@ -52,15 +52,18 @@ export const fieldMessages = (fields: MessageConfig[] = []) => {
 
     if (field === key && sanitizeNameAlias) {
       field = field
-        .replace(/([a-z])([A-Z])/g, (fullMatch, lower, upper) => `${lower} ${upper}`)
-        .replace(/(\W|[_])+/, " ");
+        .replace(
+          /([a-z])([A-Z])/g,
+          (fullMatch, lower, upper) => `${lower} ${upper}`,
+        )
+        .replace(/(\W|[_])+/, ' ');
 
       field = sentenceCase(field);
     }
 
     return {
       ...fieldMsgs,
-      [key || alias || "undefined"]: {
+      [key || alias || 'undefined']: {
         isString: `${field} must be a string.`,
         isAlpha: `${field} can only contain alphabets.`,
         isEmail: `${field} must be a valid e-mail address.`,
@@ -74,7 +77,7 @@ export const fieldMessages = (fields: MessageConfig[] = []) => {
         isDecimal: `${field} must be a valid decimal value${
           info?.isDecimal?.decimal_digits
             ? `, with ${info?.isDecimal?.decimal_digits} decimal digits`
-            : ""
+            : ''
         }.`,
         isBoolean: `${field} must be a boolean value`,
         isBefore: `${field} must be before ${info && info.isBefore}.`,

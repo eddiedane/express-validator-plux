@@ -1,9 +1,12 @@
-import { FieldRule, Fields } from "../types";
+import { FieldRule, Fields } from '../types';
 
-export const getCopyFieldRules = (fieldKey: string, fields: Fields): boolean | FieldRule[] => {
+export const getCopyFieldRules = (
+  fieldKey: string,
+  fields: Fields,
+): boolean | FieldRule[] => {
   const rules = fields[fieldKey];
 
-  if (typeof rules !== "string") return rules;
+  if (typeof rules !== 'string') return rules;
 
   const copyFieldKey = rules;
 
@@ -13,7 +16,7 @@ export const getCopyFieldRules = (fieldKey: string, fields: Fields): boolean | F
 
   const copyFieldRules = fields[copyFieldKey];
 
-  if (typeof copyFieldRules === "string") {
+  if (typeof copyFieldRules === 'string') {
     const nextCopyFieldKey = copyFieldRules;
     return getCopyFieldRules(nextCopyFieldKey, fields);
   }

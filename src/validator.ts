@@ -1,15 +1,35 @@
-import { NextFunction, Request, Response } from "express";
-import { body, query, ValidationChain, ValidationError, validationResult } from "express-validator";
-import { get } from "lodash";
-import pluralize from "pluralize";
-
-import { QV_BEFORE_RESULT, QV_REQUEST_STORE } from "./constants";
-import { $$Fields, DataLocation, Fields, MessageConfig, Obj, Schema } from "./types";
+import { NextFunction, Request, Response } from 'express';
 import {
-    combineMessages, customRules, fieldMessages, getNestedKeyArrays, getRuleArgs, getRuleName,
-    resolveFields, suppressErrors, toNestedKeyArray
-} from "./utils";
-import { resolveRule } from "./utils/resolveRule";
+  body,
+  query,
+  ValidationChain,
+  ValidationError,
+  validationResult,
+} from 'express-validator';
+import { get } from 'lodash';
+import pluralize from 'pluralize';
+
+import { QV_BEFORE_RESULT, QV_REQUEST_STORE } from './constants';
+import {
+  $$Fields,
+  DataLocation,
+  Fields,
+  MessageConfig,
+  Obj,
+  Schema,
+} from './types';
+import {
+  combineMessages,
+  customRules,
+  fieldMessages,
+  getNestedKeyArrays,
+  getRuleArgs,
+  getRuleName,
+  resolveFields,
+  suppressErrors,
+  toNestedKeyArray,
+} from './utils';
+import { resolveRule } from './utils/resolveRule';
 
 let customRulesLibrary: Obj = customRules(require('./rules'));
 

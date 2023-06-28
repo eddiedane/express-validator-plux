@@ -1,4 +1,4 @@
-import { FieldValidationError, ValidationError } from "express-validator";
+import { FieldValidationError, ValidationError } from 'express-validator';
 
 type FlatErrors = { [key: string]: string[] };
 

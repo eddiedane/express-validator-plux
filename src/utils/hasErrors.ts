@@ -1,8 +1,8 @@
-import { Request } from "express";
+import { Request } from 'express';
 
-import { QV_CONTEXTS } from "../constants";
-import { Obj } from "../types";
-import { mergeNestedKeys } from "./keychain";
+import { QV_CONTEXTS } from '../constants';
+import { Obj } from '../types';
+import { mergeNestedKeys } from './keychain';
 
 export function hasErrors({ req, path }: { req: Request & Obj; path: string }) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Request } from "express";
+import { Request } from 'express';
 
 export interface Obj {
   [key: string]: any;
 }
 
-export type DataLocation = "body" | "query";
+export type DataLocation = 'body' | 'query';
 
 export type ValidatorHandler = (
   value: any,
-  options: { req: Request; path: string; location: "body" | "query" },
+  options: { req: Request; path: string; location: 'body' | 'query' },
 ) => any | Promise<any>;
 
 export type ValidatorFactionOptions<D = any> = { data: D; msg: string };

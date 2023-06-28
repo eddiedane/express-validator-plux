@@ -1,7 +1,7 @@
-import { sentenceCase } from "change-case";
-import { isNumber as _isNumber } from "lodash";
+import { sentenceCase } from 'change-case';
+import { isNumber as _isNumber } from 'lodash';
 
-import { ValidatorFactionOptions, ValidatorHandler } from "../types";
+import { ValidatorFactionOptions, ValidatorHandler } from '../types';
 
 export function isNumber({ msg }: ValidatorFactionOptions): ValidatorHandler {
   return (value, { path }) => {

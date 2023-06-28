@@ -1,5 +1,5 @@
-import { Request } from "express";
-import { QV_REQUEST_STORE } from "../constants";
+import { Request } from 'express';
+import { QV_REQUEST_STORE } from '../constants';
 
 export function required({
   on: bool = true,
@@ -12,9 +12,13 @@ export function required({
   location: string;
   on?: boolean | (() => boolean);
 }) {
-  if (!location) throw new Error("required(): location not set");
+  if (!location) throw new Error('required(): location not set');
 
   const request: any = req; // eslint-disable-line
   const field = request[QV_REQUEST_STORE].fields[path];
-  request[QV_REQUEST_STORE].fields[path] = { ...field, required: bool, location };
+  request[QV_REQUEST_STORE].fields[path] = {
+    ...field,
+    required: bool,
+    location,
+  };
 }

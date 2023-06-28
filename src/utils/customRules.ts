@@ -1,4 +1,4 @@
-import { Obj } from "../types";
+import { Obj } from '../types';
 
 export function customRules(rules: Obj, wrap: boolean = false) {
   const _rules: Obj = {};

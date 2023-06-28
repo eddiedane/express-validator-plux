@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Obj } from "../types";
+import { Obj } from '../types';
 
 export const keychainAssign = (obj: Obj, chain: string[], value: any) => {
   if (!chain || !chain.length) return;
