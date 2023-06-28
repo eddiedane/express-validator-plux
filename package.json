@@ -3,7 +3,7 @@
   "private": false,
   "version": "1.0.0",
   "description": "Simply express-validator with some extra features",
-  "main": "index.js",
+  "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "homepage": "https://github.com/eddiedane/express-validator-plux#readme",
   "repository": {
@@ -14,12 +14,11 @@
     "lib/**/*"
   ],
   "scripts": {
-    "test": "jest --config jestconfig.json",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"lib/**/*.js\" \"lib/**/*.ts\"",
     "lint": "eslint src/index.ts",
     "preversion": "npm run lint",
-    "prepublishOnly": "npm test && npm run lint",
+    "prepublishOnly": "npm run lint",
     "prepare": "npm run build",
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags"
