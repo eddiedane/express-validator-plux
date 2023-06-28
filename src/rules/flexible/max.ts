@@ -34,7 +34,7 @@ export const max: ValidatorRuleFactory<LimitRuleValue> = ({
       return val.length > max
         ? Promise.reject(
             msg ||
-              `${sentenceCase(path)} must be contain atmost ${max} ${pluralize(
+              `${sentenceCase(path)} must contain atmost ${max} ${pluralize(
                 'character',
                 max,
               )}`,

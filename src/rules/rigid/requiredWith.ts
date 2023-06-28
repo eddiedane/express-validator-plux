@@ -18,7 +18,6 @@ export const requiredWith = (
   options: Options = { falsy: defaultFalsy },
 ): ValidatorHandler => {
   return (value: string | number, { req, location, path }) => {
-    console.log({ value });
     if (value !== undefined && !isEmptyValue(value, options.falsy)) return true;
 
     const pathKeychain = toNestedKeyArray(path);

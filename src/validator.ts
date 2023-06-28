@@ -25,6 +25,7 @@ import {
   getNestedKeyArrays,
   getRuleArgs,
   getRuleName,
+  isEmptyValue,
   resolveFields,
   suppressErrors,
   toNestedKeyArray,
@@ -233,14 +234,14 @@ function checkStoreFields(req: Request) {
   const { fields } = request[QV_REQUEST_STORE];
 
   for (const path in fields) {
-    const { required: bool, location } = fields[path];
+    const { required: bool, location, falsy } = fields[path];
     const required = typeof bool === 'function' ? bool() : bool;
 
     if (required || required == null) continue;
 
     const value = get(request[location], path);
 
-    if (value == null) suppressErrors({ req, path });
+    if (isEmptyValue(value, falsy)) suppressErrors({ req, path });
   }
 }
 

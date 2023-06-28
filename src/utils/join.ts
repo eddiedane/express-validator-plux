@@ -19,10 +19,13 @@ export function join(
   else if (len === 1) return strArr[0];
 
   if (delimiters.length > 1) {
-    const lft = strArr.slice(0, len - 1).join(delimiters[0]);
+    const lft = strArr
+      .slice(0, len - 1)
+      .join(delimiters[0])
+      .trim();
 
-    return `${lft}${delimiters[1]}${strArr[len - 1]}`;
+    return `${lft}${delimiters[1]}${strArr[len - 1]}`.trim();
   } else {
-    return strArr.join(delimiters[0]);
+    return strArr.join(delimiters[0]).trim();
   }
 }

@@ -33,7 +33,7 @@ export const min: ValidatorRuleFactory<LimitRuleValue> = ({
       return val.length < min
         ? Promise.reject(
             msg ||
-              `${sentenceCase(path)} must be contain atleast ${min} ${pluralize(
+              `${sentenceCase(path)} must contain atleast ${min} ${pluralize(
                 'character',
                 min,
               )}`,
