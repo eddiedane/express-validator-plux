@@ -83,6 +83,7 @@ export const fieldMessages = (fields: MessageConfig[] = []) => {
         isBefore: `${field} must be before ${info && info.isBefore}.`,
         isAfter: `${field} must be after ${info && info.isAfter}.`,
         isURL: `${field} is not an acceptable URL format.`,
+        isStrongPassword: `${field} is too weak.`,
         exists: `${field} is required.`,
         notEmpty: `${field} is required and can not be empty.`,
         matches: `${field} format is not valid.`,
