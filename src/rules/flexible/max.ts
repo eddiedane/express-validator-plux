@@ -1,7 +1,7 @@
 import { sentenceCase } from 'change-case';
 import pluralize from 'pluralize';
 
-import { LimitRuleValue, ValidatorRuleFactory } from '../types';
+import { LimitRuleValue, ValidatorRuleFactory } from '../../types';
 
 export const max: ValidatorRuleFactory<LimitRuleValue> = ({
   data: max,

@@ -31,7 +31,7 @@ import {
 } from './utils';
 import { resolveRule } from './utils/resolveRule';
 
-let customRulesLibrary: Obj = customRules(require('./rules'));
+let customRulesLibrary: Obj = customRules(require('./rules/flexible'));
 
 export function addCustomRules(
   rules: Obj | CallableFunction,

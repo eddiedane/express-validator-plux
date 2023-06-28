@@ -3,7 +3,7 @@
 import pluralize from 'pluralize';
 import { sentenceCase } from 'sentence-case';
 
-import { ValidatorFactionOptions, ValidatorHandler } from '../types';
+import { ValidatorFactionOptions, ValidatorHandler } from '../../types';
 
 export function size({
   data: [len],

@@ -1,6 +1,7 @@
-import { sentenceCase } from 'sentence-case';
 import pluralize from 'pluralize';
-import { LimitRuleValue, ValidatorRuleFactory } from '../types';
+import { sentenceCase } from 'sentence-case';
+
+import { LimitRuleValue, ValidatorRuleFactory } from '../../types';
 
 export const min: ValidatorRuleFactory<LimitRuleValue> = ({
   data: min,

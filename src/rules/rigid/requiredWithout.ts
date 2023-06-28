@@ -2,8 +2,8 @@ import { sentenceCase } from 'change-case';
 import { get } from 'lodash';
 import pluralize from 'pluralize';
 
-import { ValidatorHandler } from '../types';
-import { join, required, toNestedKeyArray } from '../utils';
+import { ValidatorHandler } from '../../types';
+import { join, required, toNestedKeyArray } from '../../utils';
 
 export const requiredWithout = (fields: string[]): ValidatorHandler => {
   let options: { falsy?: boolean } = {};

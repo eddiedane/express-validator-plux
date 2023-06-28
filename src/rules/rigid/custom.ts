@@ -1,4 +1,4 @@
-import { ValidatorHandler } from '../types';
+import { ValidatorHandler } from '../../types';
 
 export function custom(fn: ValidatorHandler): ValidatorHandler {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
