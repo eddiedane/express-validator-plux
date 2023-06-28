@@ -1,0 +1,60 @@
+{
+  "name": "express-validator-plux",
+  "private": false,
+  "version": "1.0.0",
+  "description": "Simply express-validator with some extra features",
+  "main": "index.js",
+  "types": "lib/index.d.ts",
+  "homepage": "https://github.com/eddiedane/express-validator-plux#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eddiedane/express-validator-plux.git"
+  },
+  "files": [
+    "lib/**/*"
+  ],
+  "scripts": {
+    "test": "jest --config jestconfig.json",
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"lib/**/*.js\" \"lib/**/*.ts\"",
+    "lint": "eslint src/index.ts",
+    "preversion": "npm run lint",
+    "prepublishOnly": "npm test && npm run lint",
+    "prepare": "npm run build",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
+  },
+  "keywords": [
+    "form",
+    "express",
+    "request",
+    "response",
+    "validator",
+    "validation"
+  ],
+  "author": "Eddie Dane",
+  "license": "ISC",
+  "dependencies": {
+    "change-case": "^4.1.2",
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "lodash": "^4.17.21",
+    "pluralize": "^8.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/express-validator": "^3.0.0",
+    "@types/lodash": "^4.14.195",
+    "@types/pluralize": "^0.0.29",
+    "@typescript-eslint/eslint-plugin": "^5.60.1",
+    "eslint": "^8.43.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-config-semistandard": "^17.0.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "prettier": "^2.8.8"
+  }
+}
