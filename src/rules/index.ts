@@ -4,3 +4,7 @@ export * from './nullable';
 export * from './custom';
 export * from './size';
 export * from './isNumber';
+export * from './forbiddenWithout';
+export * from './requiredWhen';
+export * from './requiredWith';
+export * from './requiredWithout';

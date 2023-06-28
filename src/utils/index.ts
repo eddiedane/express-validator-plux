@@ -13,3 +13,4 @@ export * from './suppressErrors';
 export * from './required';
 export * from './hasErrors';
 export * from './flattenValidationErrors';
+export * from './join';
