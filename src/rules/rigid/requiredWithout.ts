@@ -3,17 +3,20 @@ import { get } from 'lodash';
 import pluralize from 'pluralize';
 
 import { ValidatorHandler } from '../../types';
-import { join, required, toNestedKeyArray } from '../../utils';
+import {
+  defaultFalsy,
+  isEmptyValue,
+  join,
+  required,
+  toNestedKeyArray,
+} from '../../utils';
 
-export const requiredWithout = (fields: string[]): ValidatorHandler => {
-  let options: { falsy?: boolean } = {};
-  const lastArg = fields[fields.length - 1];
+type Options = { falsy?: boolean | CallableFunction };
 
-  if (typeof lastArg === 'object') {
-    options = lastArg;
-    fields.pop();
-  }
-
+export const requiredWithout = (
+  fields: string[],
+  options: Options = { falsy: defaultFalsy },
+): ValidatorHandler => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (value: string | number, { req, path, location }) => {
     const data = req[location];
@@ -30,13 +33,13 @@ export const requiredWithout = (fields: string[]): ValidatorHandler => {
 
       const fieldValue = get(data, fieldPaths);
 
-      if (options.falsy) return !fieldValue;
-      return fieldValue === undefined;
+      return isEmptyValue(fieldValue, options.falsy);
     });
 
     value = value == null ? '' : value;
 
-    const valueEmpty = typeof value !== 'string' ? false : !value;
+    const valueEmpty =
+      typeof value !== 'string' ? false : isEmptyValue(value, options.falsy);
 
     if (valueEmpty && fieldsEmpty) {
       required({ req, path, location });

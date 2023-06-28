@@ -13,10 +13,15 @@ export function join(
     format(item.toString(), index, array),
   );
 
-  if (delimiters.length > 1) {
-    const lft = strArr.slice(0, strArr.length - 1).join(delimiters[0]);
+  const len = strArr.length;
 
-    return `${lft}${delimiters[1]}${strArr[strArr.length - 1]}`;
+  if (!len) return '';
+  else if (len === 1) return strArr[0];
+
+  if (delimiters.length > 1) {
+    const lft = strArr.slice(0, len - 1).join(delimiters[0]);
+
+    return `${lft}${delimiters[1]}${strArr[len - 1]}`;
   } else {
     return strArr.join(delimiters[0]);
   }

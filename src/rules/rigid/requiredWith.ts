@@ -2,19 +2,24 @@ import { sentenceCase } from 'change-case';
 import pluralize from 'pluralize';
 
 import { ValidatorHandler } from '../../types';
-import { join, required, toNestedKeyArray, traverse } from '../../utils';
+import {
+  defaultFalsy,
+  isEmptyValue,
+  join,
+  required,
+  toNestedKeyArray,
+  traverse,
+} from '../../utils';
 
-export const requiredWith = (fields: string[]): ValidatorHandler => {
-  let options: { allowFalsy?: boolean } = {};
-  const lastArg = fields[fields.length - 1];
+type Options = { falsy?: boolean | CallableFunction };
 
-  if (typeof lastArg === 'object') {
-    options = lastArg;
-    fields.pop();
-  }
-
+export const requiredWith = (
+  fields: string[],
+  options: Options = { falsy: defaultFalsy },
+): ValidatorHandler => {
   return (value: string | number, { req, location, path }) => {
-    if (value !== undefined && !options.allowFalsy) return true;
+    console.log({ value });
+    if (value !== undefined && !isEmptyValue(value, options.falsy)) return true;
 
     const pathKeychain = toNestedKeyArray(path);
     const requiredFields = fields.filter((field) => {
