@@ -20,8 +20,10 @@ type UniqueRuleOptions = {
 };
 
 export const unique = (config: UniqueRuleOptions): ValidatorHandler => {
+  const db = getDbConnection(config.db || 'default');
+
   return async (value: any = '', meta) => {
-    return uniqueWithKnex(value, meta, config);
+    return uniqueWithKnex(value, meta, config, db);
   };
 };
 
@@ -29,9 +31,9 @@ async function uniqueWithKnex(
   value: any,
   meta: Meta,
   config: UniqueRuleOptions,
+  db: any,
 ) {
   const {
-    db: connectionName = 'default',
     table,
     collection,
     column,
@@ -41,7 +43,6 @@ async function uniqueWithKnex(
     filter = (q: any) => q,
   } = config;
 
-  const db = getDbConnection(connectionName);
   const { path, req } = meta;
   const col = column || path;
   const query = db

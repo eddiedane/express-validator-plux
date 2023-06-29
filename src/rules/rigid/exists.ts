@@ -23,8 +23,10 @@ type ExistsRuleOptions = {
 };
 
 export function exists(config: ExistsRuleOptions): ValidatorHandler {
+  const db = getDbConnection(config.db || 'default');
+
   return async (value: any, meta) => {
-    return existsWithKnex(value, meta, config);
+    return existsWithKnex(value, meta, config, db);
   };
 }
 
@@ -32,9 +34,9 @@ async function existsWithKnex(
   value: any,
   meta: Meta,
   config: ExistsRuleOptions,
+  db: any,
 ) {
   const {
-    db: connectionName = 'default',
     message,
     pass,
     conditions,
@@ -45,7 +47,6 @@ async function existsWithKnex(
   } = config;
 
   let { column } = config;
-  const db = getDbConnection(connectionName);
   const isArrayValue = Array.isArray(value);
 
   if (value == null || (isArrayValue && !value.length) || pass) return true;
