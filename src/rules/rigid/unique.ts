@@ -16,6 +16,7 @@ type UniqueRuleOptions = {
   exclude?: string | ((meta: Meta) => Obj);
   message?: string | ((value: any, meta: Meta) => string);
   conditions?: (meta: Meta) => Obj;
+  filter?: (query: any, req: Request) => void;
 };
 
 export const unique = (config: UniqueRuleOptions): ValidatorHandler => {
@@ -37,6 +38,7 @@ async function uniqueWithKnex(
     exclude,
     message,
     conditions,
+    filter = (q: any) => q,
   } = config;
 
   const db = getDbConnection(connectionName);
@@ -54,6 +56,10 @@ async function uniqueWithKnex(
       else if (value === null) query.whereNull(column);
       else query.where(column, value);
     });
+  }
+
+  if (filter) {
+    filter(query, req as Request);
   }
 
   if (exclude) {
