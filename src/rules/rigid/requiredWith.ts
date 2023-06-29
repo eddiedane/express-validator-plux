@@ -1,9 +1,9 @@
 import { sentenceCase } from 'change-case';
 import pluralize from 'pluralize';
 
+import { configurations } from '../../configs';
 import { ValidatorHandler } from '../../types';
 import {
-  defaultFalsy,
   isEmptyValue,
   join,
   required,
@@ -11,14 +11,10 @@ import {
   traverse,
 } from '../../utils';
 
-type Options = { falsy?: boolean | CallableFunction };
-
-export const requiredWith = (
-  fields: string[],
-  options: Options = { falsy: defaultFalsy },
-): ValidatorHandler => {
+export const requiredWith = (fields: string[]): ValidatorHandler => {
   return (value: string | number, { req, location, path }) => {
-    if (value !== undefined && !isEmptyValue(value, options.falsy)) return true;
+    if (value !== undefined && !isEmptyValue(value, configurations.falsy))
+      return true;
 
     const pathKeychain = toNestedKeyArray(path);
     const requiredFields = fields.filter((field) => {

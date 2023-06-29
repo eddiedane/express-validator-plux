@@ -2,21 +2,11 @@ import { sentenceCase } from 'change-case';
 import { get } from 'lodash';
 import pluralize from 'pluralize';
 
+import { configurations } from '../../configs';
 import { ValidatorHandler } from '../../types';
-import {
-  defaultFalsy,
-  isEmptyValue,
-  join,
-  required,
-  toNestedKeyArray,
-} from '../../utils';
+import { isEmptyValue, join, required, toNestedKeyArray } from '../../utils';
 
-type Options = { falsy?: boolean | CallableFunction };
-
-export const requiredWithout = (
-  fields: string[],
-  options: Options = { falsy: defaultFalsy },
-): ValidatorHandler => {
+export const requiredWithout = (fields: string[]): ValidatorHandler => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (value: string | number, { req, path, location }) => {
     const data = req[location];
@@ -33,13 +23,15 @@ export const requiredWithout = (
 
       const fieldValue = get(data, fieldPaths);
 
-      return isEmptyValue(fieldValue, options.falsy);
+      return isEmptyValue(fieldValue, configurations.falsy);
     });
 
     value = value == null ? '' : value;
 
     const valueEmpty =
-      typeof value !== 'string' ? false : isEmptyValue(value, options.falsy);
+      typeof value !== 'string'
+        ? false
+        : isEmptyValue(value, configurations.falsy);
 
     if (valueEmpty && fieldsEmpty) {
       required({ req, path, location });

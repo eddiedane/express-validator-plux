@@ -34,6 +34,8 @@ import { resolveRule } from './utils/resolveRule';
 
 let customRulesLibrary: Obj = customRules(require('./rules/flexible'));
 
+export { config } from './configs';
+
 export function addCustomRules(
   rules: Obj | CallableFunction,
   wrap: boolean = false,

@@ -1,13 +1,17 @@
 import { sentenceCase } from 'change-case';
 import pluralize from 'pluralize';
 
+import { configurations } from '../../configs';
 import { ValidatorHandler } from '../../types';
-import { join, required, toNestedKeyArray, traverse } from '../../utils';
+import {
+  isEmptyValue,
+  join,
+  required,
+  toNestedKeyArray,
+  traverse,
+} from '../../utils';
 
-export const forbiddenWithout = (
-  fields: string[],
-  options: { falsy?: boolean } = {},
-): ValidatorHandler => {
+export const forbiddenWithout = (fields: string[]): ValidatorHandler => {
   fields = typeof fields === 'string' ? [fields] : fields;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -19,11 +23,7 @@ export const forbiddenWithout = (
       const result = traverse(req[location], keychain);
 
       return result.some(({ value }) => {
-        if (options.falsy) {
-          return !value;
-        }
-
-        return value === undefined;
+        return isEmptyValue(value, configurations.falsy);
       });
     });
 
